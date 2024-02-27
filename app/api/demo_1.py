@@ -16,5 +16,10 @@ class Flag(BaseModel):
 
 
 @router.post("/flag", status_code=201)
-def post_flag(flag: Flag):
+def flag(flag: Flag):
     return {"error": None}
+
+
+@router.get("/junk/{id}")
+def junk(id: int):
+    return {"user": {"id": id}}
