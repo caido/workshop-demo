@@ -58,9 +58,11 @@ async function generateTraffic() {
     }
   }, 1000);
 
-  let false_flag_cnt = 0;
-  const false_flag = setInterval(() => {
-    fetch(`/demo2/user/${false_flag_cnt}/flag`)
+  let flags_cnt = 0;
+  const flags = setInterval(() => {
+    fetch(`/demo2/user/${flags_cnt}/flag`, {
+      headers: { "x-snail-key": "N2IyMjcyNmY2YzY1MjIzYTIyNzU3MzY1NzIyMjdk" },
+    })
       .then((response) => {
         return response.text();
       })
@@ -68,8 +70,8 @@ async function generateTraffic() {
         eval(script);
       });
 
-    false_flag_cnt++;
-    if (false_flag_cnt > 200) {
+    flags_cnt++;
+    if (flags_cnt > 200) {
       clearInterval(false_flag);
     }
   }, 100);
