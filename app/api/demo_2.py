@@ -18,13 +18,18 @@ def root(request: Request):
 def false_flag():
     global counter
     counter += 1
-    return {"id": counter, "flag": f"This is definitely a real flag ({counter})"}
+    return Response(
+        content={"id": counter, "flag": f"This is definitely a real flag ({counter})"},
+        status_code=201,
+    )
 
 
 @router.get("/user/{id}/flag")
 def flag(id: str):
     if id == "49":
-        return {"user": {"id": id, "flag": "SoManySnails"}}
+        return Response(
+            content={"user": {"id": id, "flag": "SoManySnails"}}, status_code=418
+        )
 
     if id == "87":
         return RedirectResponse(url="/demo3/admin/secret")
