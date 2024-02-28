@@ -22,6 +22,9 @@ def admin_secret(request: Request):
     data = json.loads(decoded)
 
     if data.get("role") == "admin":
-        return {"flag": codecs.encode("HiddenSnails", "rot_13")}
+        return {
+            "flag": codecs.encode("HiddenSnails", "rot_13"),
+            "encoding": "ceasar_favourite",
+        }
     else:
         return Response(status_code=403)
