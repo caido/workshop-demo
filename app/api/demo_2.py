@@ -14,7 +14,13 @@ def root(request: Request):
 
 @router.get("/user/{id}/flag")
 def false_flag(id: str):
-    return {"user": {"id": id, "FLAG": "Got you!"}}
+    if id == "49":
+        return {"user": {"id": id, "flag": "SoManySnails"}}
+
+    if id == "87":
+        return RedirectResponse(url="/demo3/admin/secret")
+
+    return {"user": {"id": id, "flag": f"Wrong ({id}) thing"}}
 
 
 @router.get("/files/{name}.js")
@@ -34,5 +40,5 @@ def analytics(event: Analytic):
 
 @router.post("/user/analytics")
 def old_path():
-    response = RedirectResponse(url="/analytics")
+    response = RedirectResponse(url="/demo2/analytics")
     return response

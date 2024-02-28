@@ -8,7 +8,7 @@ async function send_flag() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ flag: "CO-ThisIsANiceSnail" }),
+    body: JSON.stringify({ flag: "ThisIsANiceSnail" }),
   });
 
   generate_junk();
