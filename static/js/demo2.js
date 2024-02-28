@@ -58,21 +58,27 @@ async function generateTraffic() {
     }
   }, 1000);
 
+  let false_flags_cnt = 0;
+  const false_flags = setInterval(() => {
+    fetch(`/demo2/user/flag`, {
+      method: "PUT",
+    });
+
+    false_flags_cnt++;
+    if (false_flags_cnt > 200) {
+      clearInterval(false_flags);
+    }
+  }, 100);
+
   let flags_cnt = 0;
   const flags = setInterval(() => {
     fetch(`/demo2/user/${flags_cnt}/flag`, {
       headers: { "x-snail-key": "N2IyMjcyNmY2YzY1MjIzYTIyNzU3MzY1NzIyMjdk" },
-    })
-      .then((response) => {
-        return response.text();
-      })
-      .then((script) => {
-        eval(script);
-      });
+    });
 
     flags_cnt++;
     if (flags_cnt > 200) {
-      clearInterval(false_flag);
+      clearInterval(flags_cnt);
     }
   }, 100);
 }

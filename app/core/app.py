@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from app.api import demo_1, demo_2, home
+from app.api import demo_1, demo_2, demo_3, home
 
 
 def create_app() -> FastAPI:
@@ -12,6 +12,7 @@ def create_app() -> FastAPI:
     app.include_router(home.router)
     app.include_router(demo_1.router)
     app.include_router(demo_2.router)
+    app.include_router(demo_3.router)
 
     origins = [
         "http://localhost:3000",

@@ -6,14 +6,23 @@ from app.core.templates import templates
 
 router = APIRouter(prefix="/demo2")
 
+counter = 0
+
 
 @router.get("/")
 def root(request: Request):
     return templates.TemplateResponse(request=request, name="demo2.jinja")
 
 
+@router.put("/user/flag")
+def false_flag():
+    global counter
+    counter += 1
+    return {"id": counter, "flag": f"This is definitely a real flag ({counter})"}
+
+
 @router.get("/user/{id}/flag")
-def false_flag(id: str):
+def flag(id: str):
     if id == "49":
         return {"user": {"id": id, "flag": "SoManySnails"}}
 
