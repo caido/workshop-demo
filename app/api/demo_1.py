@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 from app.core.templates import templates
 
-router = APIRouter(prefix="/demo1", tags=["posts"])
+router = APIRouter(prefix="/demo1")
 
 
 @router.get("/")
