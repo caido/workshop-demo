@@ -18,7 +18,7 @@ def root(request: Request):
 def admin_secret(request: Request):
     # Extract auth
     snail_key = request.headers.get("x-snail-key")
-    decoded = bytes.fromhex(base64.b64decode(snail_key)).decode("utf-8")
+    decoded = bytes.fromhex(base64.b64decode(snail_key).decode("utf-8")).decode("utf-8")
     data = json.loads(decoded)
 
     if data.get("role") == "admin":

@@ -4,7 +4,7 @@ async function generateTraffic() {
   const events = ["click", "scroll", "hover", "doubleClick", "rightClick"];
   const files = ["analytics", "jquery", "plausible", "d3", "react"];
 
-  let analytics_cnt = 0;
+  var analytics_cnt = 0;
   const analytics = setInterval(() => {
     const event = events[Math.floor(Math.random() * events.length)];
 
@@ -20,9 +20,9 @@ async function generateTraffic() {
     if (analytics_cnt > 100) {
       clearInterval(analytics);
     }
-  }, 150);
+  }, 200);
 
-  let old_analytics_cnt = 0;
+  var old_analytics_cnt = 0;
   const old_analytics = setInterval(() => {
     const event = events[Math.floor(Math.random() * events.length)];
 
@@ -40,7 +40,7 @@ async function generateTraffic() {
     }
   }, 300);
 
-  let js_cnt = 0;
+  var js_cnt = 0;
   const js = setInterval(() => {
     const file = files[Math.floor(Math.random() * files.length)];
 
@@ -53,12 +53,12 @@ async function generateTraffic() {
       });
 
     js_cnt++;
-    if (js_cnt > 100) {
+    if (js_cnt > 40) {
       clearInterval(js);
     }
-  }, 1000);
+  }, 500);
 
-  let false_flags_cnt = 0;
+  var false_flags_cnt = 0;
   const false_flags = setInterval(() => {
     fetch(`/demo2/user/flag`, {
       method: "PUT",
@@ -70,15 +70,15 @@ async function generateTraffic() {
     }
   }, 100);
 
-  let flags_cnt = 0;
+  var flags_cnt = 0;
   const flags = setInterval(() => {
     fetch(`/demo2/user/${flags_cnt}/flag`, {
       headers: { "x-snail-key": "N2IyMjcyNmY2YzY1MjIzYTIyNzU3MzY1NzIyMjdk" },
     });
 
     flags_cnt++;
-    if (flags_cnt > 200) {
-      clearInterval(flags_cnt);
+    if (flags_cnt > 100) {
+      clearInterval(flags);
     }
-  }, 100);
+  }, 150);
 }

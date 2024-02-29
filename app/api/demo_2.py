@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request, Response
-from fastapi.responses import RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel
 
 from app.core.templates import templates
@@ -18,7 +18,7 @@ def root(request: Request):
 def false_flag():
     global counter
     counter += 1
-    return Response(
+    return JSONResponse(
         content={"id": counter, "flag": f"This is definitely a real flag ({counter})"},
         status_code=201,
     )
@@ -27,7 +27,7 @@ def false_flag():
 @router.get("/user/{id}/flag")
 def flag(id: str):
     if id == "49":
-        return Response(
+        return JSONResponse(
             content={"user": {"id": id, "flag": "SoManySnails"}}, status_code=418
         )
 
