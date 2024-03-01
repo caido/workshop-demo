@@ -7,6 +7,7 @@ async function send_flag() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-snail": "anonymous",
     },
     body: JSON.stringify({ flag: "ThisIsANiceSnail" }),
   });
